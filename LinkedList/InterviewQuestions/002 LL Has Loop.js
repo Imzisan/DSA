@@ -146,3 +146,27 @@ class LinkedList{
         
     }
 }
+function createPartialLoop(linkedList) {
+linkedList.head.next.next.next.next = linkedList.head.next;
+}
+function it (){
+const longList = new LinkedList(1);
+for (let i = 2; i <= 8; i++) {
+  longList.push(i);
+}
+
+// Create a loop in the first half
+createPartialLoop(longList);
+
+// Create a second half list with no loop
+const secondHalf = new LinkedList(5);
+secondHalf.push(6);
+secondHalf.push(7);
+secondHalf.push(8);
+    console.log(longList.hasLoop()); console.log(secondHalf.hasLoop());
+
+   
+};
+
+
+it();
