@@ -186,7 +186,7 @@ function it() {
     const list = new LinkedList(1);
     list.push(2);
     list.push(3);
-    const result = list.findKthFromEnd(2) ;
-    console.log(result.value);
+    const result = list.findKthFromEnd(9) ;
+    console.log(result);
 };
 it();
