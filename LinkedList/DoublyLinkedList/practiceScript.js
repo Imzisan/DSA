@@ -91,6 +91,72 @@ class DoublyLinkedList {
         this.length ++;
         return this;
     }
+    shift(){
+        if(!this.head){
+            return undefined ;
+        }
+        let temp =this.head;
+        if (this.length===1){
+            this.head =null;
+            this.tail =null;
+        } else {
+            
+            this.head =this.head.next;
+            this.head.prev=null;
+            temp.next =null;
+
+        }
+        this.length -- ;
+        return temp;
+    }
+    get(index){
+        if (!this.head){
+            return undefined;
+        }
+        let temp = this.head;
+        if(index < 0 || index >= this.length){
+            return undefined;
+        } else if (index < this.length/2){
+            for ( let i = 0 ; i < index ; i ++){
+                temp =temp.next;
+            }
+            return temp;
+        } else {
+            temp = this.tail;
+            for ( let i=this.length -1 ; i > index ; i --){
+                temp =temp.prev;
+            }
+            return temp;
+        }
+
+    }
+    set(index,value){
+        let temp = this.get(index);
+        while (temp){
+            temp.value = value;
+            return true;
+        }
+        return false;
+    }
+    insert(index , value){
+        if (index < 0 || index > this.length) return false  ;
+        if (index === 0 ) {
+            return this.unshift(value);
+        }
+        if (index == this.length){
+            return this.push(value);
+        }
+        const newNode = new Node (value);
+        let before = this.get(index -1);
+        let after = before.next;
+        newNode.next = before.next;
+        after.prev=newNode;
+        before.next=newNode;
+        newNode.prev=before;
+        this.length ++;
+        return true;
+
+    }
 }
 function test() {
     let myDLL = new DoublyLinkedList(1);
@@ -103,6 +169,8 @@ function test() {
     myDLL.printList();
 
     console.log("\poped node:");
-    console.log(myDLL.pop(2).value);
+    console.log(myDLL.insert(2,7));
+    console.log("DLL before pop():");
+    myDLL.printList();
 }
 test();
