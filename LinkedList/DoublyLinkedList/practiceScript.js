@@ -157,6 +157,18 @@ class DoublyLinkedList {
         return true;
 
     }
+    remove(index){
+        if (index < 0 || index >= this.length) return false ;
+        if ( index == this.length -1) return  this.pop();
+        if (index === 0 ) return this.shift();
+        const temp = this.get(index);
+        temp.prev.next = temp.next;
+        temp.next.prev =temp.prev;
+        temp.next =null ;
+        temp.prev = null;
+        this.length --;
+        return temp;
+    }
 }
 function test() {
     let myDLL = new DoublyLinkedList(1);
@@ -169,7 +181,7 @@ function test() {
     myDLL.printList();
 
     console.log("\poped node:");
-    console.log(myDLL.insert(2,7));
+    console.log(myDLL.remove(4).value);
     console.log("DLL before pop():");
     myDLL.printList();
 }
