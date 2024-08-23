@@ -77,8 +77,19 @@ class DoublyLinkedList {
         return temp;
 
     }
-    unshift(){
-        
+    unshift(value){
+        const newNode = new Node(value);
+        if (!this.head){
+            this.head= newNode;
+            this.tail=this.head;
+        } else {
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head=newNode;
+
+        }
+        this.length ++;
+        return this;
     }
 }
 function test() {
