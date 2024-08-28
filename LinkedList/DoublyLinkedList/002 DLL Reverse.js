@@ -305,10 +305,19 @@ class DoublyLinkedList {
         this.length --;
         return temp;
     }
-    swapFirstLast(){
-        if (this.length < 2) return;
-        const temp =this.head.value;
-        this.head.value=this.tail.value;
-        this.tail.value = temp;
+   reverse(){
+    if(this.length < 2) return;
+    let current = this.head;
+    let temp =null;
+    while(current != null){
+    
+      temp=current.prev;  
+      current.prev=current.next;
+      current.next=temp;
+      current=current.prev;
     }
+    temp = this.head;
+    this.head = this.tail;
+    this.tail = temp;
+   }
 }
