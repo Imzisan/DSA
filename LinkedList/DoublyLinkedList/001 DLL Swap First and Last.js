@@ -161,12 +161,23 @@ class DoublyLinkedList {
         }
         this.length ++;
     }
-    printList() {
-        let temp = this.head;
-        while (temp !== null) {
-            console.log(temp.value);
-            temp = temp.next;
+    printList(){
+        let temp =this.head;
+        let output = "";
+        if (!temp){
+            return console.log("empty");
+        }else{
+            while(temp !== null){
+                output += String(temp.value);
+                temp = temp.next;
+                if(temp != null){
+                    output += "->";
+                }
+            }
+            console.log(output);
+            
         }
+
     }
 
     getHead() {
